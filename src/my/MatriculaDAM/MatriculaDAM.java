@@ -130,33 +130,16 @@ public class MatriculaDAM extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //VAYA GUARRADA DE CODIGO!
         //obtenim el numero d'ufs a matricular
-        int uf = 0;
-        int preu = 0;
-        String error = "";
-        try {
-            uf = Integer.parseInt(jTextField1.getText());
-        } catch (NumberFormatException e) {
-            error = "El nombre d'Uf's a de ser numeric";
-        }
-        //comprovem que l'anterior NO ha donat error.
-        if (error == "") {
-            //tenim un valor numeric d'UF, comprobem que no sigui negatiu o zero
-            if (uf < 1) {
-                error = "T'has de matricular com a minim a una UF";
-            } else if (uf < 12) {//si es matricula de menys de 12 UF la matricula val uf *30
-                preu = uf * 30;
-            } else {//Mes de 12 UF = 360
-                preu = 360;
-            }
-        }
-        //comprovem que no s'hagi generat cap error. Si hi ha, es mostra per pantalla.
-        if (error != "") {
-            jLabel1.setText(error);
-        } else {//Tot ha anat bé, i tenim un import de matricula per mostrar.
-            String preuString = String.valueOf(preu)+" €";
-            jLabel1.setText(preuString);
-        }
+        ComprobaMatricula comproba = new ComprobaMatricula();
+        String preuMatricula;
 
+        try {
+            preuMatricula = comproba.comprobaMatricula(jTextField1.getText());
+            jLabel1.setText(preuMatricula);
+        } catch (Throwable e) {
+            preuMatricula = e.toString();
+        }
+        jLabel1.setText(preuMatricula);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -204,6 +187,6 @@ public class MatriculaDAM extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
+    public static javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
