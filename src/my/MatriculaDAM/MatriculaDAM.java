@@ -48,7 +48,7 @@ public class MatriculaDAM extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,20 +124,19 @@ public class MatriculaDAM extends javax.swing.JFrame {
                 .addGap(7, 7, 7))
         );
 
+        jPanel1.getAccessibleContext().setAccessibleName("El preu de la matricula és");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //VAYA GUARRADA DE CODIGO!
-        //obtenim el numero d'ufs a matricular
         ComprobaMatricula comproba = new ComprobaMatricula();
         String preuMatricula;
-
         try {
             preuMatricula = comproba.comprobaMatricula(jTextField1.getText());
             jLabel1.setText(preuMatricula);
         } catch (Throwable e) {
-            preuMatricula = e.toString();
+            preuMatricula = e.toString().substring(20);
         }
         jLabel1.setText(preuMatricula);
     }//GEN-LAST:event_jButton1ActionPerformed
